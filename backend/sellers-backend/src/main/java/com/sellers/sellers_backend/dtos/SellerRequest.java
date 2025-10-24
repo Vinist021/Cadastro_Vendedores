@@ -30,6 +30,9 @@ public class SellerRequest {
     @Max(value = 1, message = "Gender must be 0 (Female) or 1 (Male)")
     private Integer gender;
 
+    public SellerRequest() {
+    }
+
     public Long getId() {
         return id;
     }
