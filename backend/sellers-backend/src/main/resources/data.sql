@@ -1,0 +1,10 @@
+INSERT INTO sellers (name, salary, bonus, gender) VALUES ('Alice Silveira', 6000.00, 30.0, '0');
+INSERT INTO sellers (name, salary, bonus, gender) VALUES ('Marcos Teixeira', 3500.00, 15.0, '1');
+INSERT INTO sellers (name, salary, bonus, gender) VALUES ('Beatriz Andrade', 4200.00, 20.0, '0');
+INSERT INTO sellers (name, salary, bonus, gender) VALUES ('Rafael Moura', 5100.00, 25.0, '1');
+INSERT INTO sellers (name, salary, bonus, gender) VALUES ('Camila Figueiredo', 5800.00, 28.0, '0');
+INSERT INTO sellers (name, salary, bonus, gender) VALUES ('Eduardo Pacheco', 3900.00, 12.0, '1');
+INSERT INTO sellers (name, salary, bonus, gender) VALUES ('Juliana Nogueira', 4700.00, 18.0, '0');
+INSERT INTO sellers (name, salary, bonus, gender) VALUES ('Lucas Moreira', 5200.00, 22.0, '1');
+INSERT INTO sellers (name, salary, bonus, gender) VALUES ('Patricia Carvalho', 6100.00, 35.0, '0');
+INSERT INTO sellers (name, salary, bonus, gender) VALUES ('Andre Oliveira', 3300.00, 10.0, '1');
