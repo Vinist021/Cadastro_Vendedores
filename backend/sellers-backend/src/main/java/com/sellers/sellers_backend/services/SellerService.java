@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sellers.sellers_backend.dtos.SellerRequest;
+import com.sellers.sellers_backend.dtos.SellerResponse;
 import com.sellers.sellers_backend.models.Seller;
 import com.sellers.sellers_backend.repositories.SellerRepository;
 
@@ -16,32 +18,38 @@ public class SellerService {
     @Autowired
     SellerRepository sellerRepository;
 
-    public Seller getById(Long id) {
+    public SellerResponse getById(Long id) {
         return sellerRepository.findById(id).orElseThrow(
-            () -> new EntityNotFoundException("Seller with id " + id + " not found"));
+            () -> new EntityNotFoundException("Seller with id " + id + " not found")).toDTO();
     }
 
-    public List<Seller> getAll() {
-        return sellerRepository.findAll();
+    public List<SellerResponse> getAll() {
+        return sellerRepository.findAll()
+                        .stream()
+                        .map(s -> s.toDTO())
+                        .toList();
     }
 
-    public Seller save(Seller seller) {
-        return sellerRepository.save(seller);
+    public SellerResponse save(SellerRequest sellerRequest) {
+        Seller seller = sellerRepository.save(sellerRequest.toEntity());
+        return seller.toDTO();
     }
 
-    public Seller update(Long id, Seller seller) {
-        Seller updatedSeller = getById(id);
+    public SellerResponse update(Long id, SellerRequest sellerRequest) {
+        Seller updatedSeller = sellerRepository.getReferenceById(id);
 
-        updatedSeller.setName(seller.getName());
-        updatedSeller.setSalary(seller.getSalary());
-        updatedSeller.setBonus(seller.getBonus());
-        updatedSeller.setGender(seller.getGender());
+        updatedSeller.setName(sellerRequest.getName());
+        updatedSeller.setSalary(sellerRequest.getSalary());
+        updatedSeller.setBonus(sellerRequest.getBonus());
+        updatedSeller.setGender(sellerRequest.getGender());
 
-        return sellerRepository.save(updatedSeller);
+        return sellerRepository.save(updatedSeller).toDTO();
     }
 
     public void deleteById(Long id) {
-        Seller seller = getById(id);
+        Seller seller = sellerRepository.findById(id)
+                        .orElseThrow(() -> new EntityNotFoundException("Seller not found with this id: " + id));
+                        
         sellerRepository.delete(seller);
     }
 }

@@ -2,6 +2,8 @@ package com.sellers.sellers_backend.models;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
+import com.sellers.sellers_backend.dtos.SellerResponse;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -95,4 +97,14 @@ public class Seller {
         return true;
     }
 
+    public SellerResponse toDTO() {
+        SellerResponse seller = new SellerResponse();
+        seller.setId(id);
+        seller.setName(name);
+        seller.setSalary(salary);
+        seller.setBonus(bonus);
+        seller.setGender(gender);
+
+        return seller;
+    }
 }

@@ -1,5 +1,7 @@
 package com.sellers.sellers_backend.dtos;
 
+import com.sellers.sellers_backend.models.Seller;
+
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Max;
@@ -71,5 +73,17 @@ public class SellerRequest {
 
     public void setGender(Integer gender) {
         this.gender = gender;
+    }
+
+    public Seller toEntity() {
+        Seller seller = new Seller();
+
+        seller.setId(id);
+        seller.setName(name);
+        seller.setSalary(salary);
+        seller.setBonus(bonus);
+        seller.setGender(gender);
+
+        return seller;
     }
 }
